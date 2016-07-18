@@ -1,24 +1,24 @@
 import Backbone from 'backbone'
 import $ from 'jquery'
 import {app_name} from '../app'
-<<<<<<< HEAD
-=======
 
->>>>>>> af10df8e260eda3f2cccdb6257b854c9d2800f47
+const PostModel = Backbone.Model.extend({
+	url: "/api/posts",
+	idAttribute: "_id"
+})
+
+const PostCollection = Backbone.Collection.extend({
+	model: PostModel,
+	url: "/api/myPosts"
+})
 
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
-// ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
-
 const User = Backbone.Model.extend({
 	urlRoot: '/api/users',
 	idAttribute: '_id'
 })
-<<<<<<< HEAD
 
-UserAuthModel.register = function(email,password) {
-=======
 User.register = function(email,password) {
->>>>>>> af10df8e260eda3f2cccdb6257b854c9d2800f47
 	return $.ajax({
 		type: 'post',
 		url: '/auth/register',
@@ -54,17 +54,11 @@ User.getCurrentUser = function() {
 }
 
 
-export { User }
-
-// ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
+export {User,PostModel,PostCollection}
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 
 // ^^ DO NOT TOUCH ^^
 // but, you may ...
-<<<<<<< HEAD
-const AppUserModel = UserAuthModel.extend({
-=======
 const myUserModel = User.extend({
->>>>>>> af10df8e260eda3f2cccdb6257b854c9d2800f47
 
 })

@@ -8,3 +8,17 @@ h1 {
 	text-align: center;
 	color: fuchsia;
 }
+
+.navbar {
+	display: flex;
+	background-color: #ddd;
+	justify-content: space-around;
+}
+
+.navbar > a {
+	/*width: 30%;*/
+	font-size: 1.5em;
+	text-decoration: none;
+	color: #111;
+	margin: 1%;
+}

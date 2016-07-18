@@ -9,6 +9,40 @@ let Post = require('../db/schema.js').Post
 apiRouter
 
   apiRouter
+    .get('/myPosts', function(req,res){
+      if(req.user){
+        Post.find({author: req.user.email}, function(err,results){
+        if(err) return res.json(err)
+          res.json(results)
+        })
+      }
+      else{
+        response.status(404).json({
+          error: 'no one is logged in'
+        })
+      }
+    })
+    .get('/posts', function(req,res){
+      Post.find({},function(err,results){
+        if(err) return res.json(err)
+          res.json(results)
+      })
+    })
+    .post('/posts', function(req,res){
+      let newPost = new Post(req.body)
+      newPost.save(function(err){
+        if(err){
+          res.status(404).send(err)
+        }
+        else{
+          res.json(newPost)
+        }
+      })
+    })
+
+
+
+  apiRouter
     .get('/users', function(req, res){
       User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err) 
