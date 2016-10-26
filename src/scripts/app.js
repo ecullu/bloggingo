@@ -8,12 +8,12 @@ import {PostModel} from './models/models'
 import LoginView from './views/loginView'
 import DashBoardView from './views/dashboardView'
 import PostEditorView from './views/postEditorView'
+import ACTIONS from './actions'
 
 
 const app = function() {
 	const blogRouter = Backbone.Router.extend({
 		routes:{
-			"posts/allposts": "showAllPosts",
 			"posts/myposts": "showMyPosts",
 			"posts/compose": "showPostEditor",
 			"home": "showDashboard",
@@ -21,12 +21,16 @@ const app = function() {
 			"*catchall": "redirect"
 		},
 
-		showAllPosts: function(){
-			ReactDOM.render(<AllPostsView />, document.querySelector(".container"))
+		redirect: function(){
+			location.hash = "home"
 		},
 
 		showMyPosts: function(){
-			ReactDOM.render(<MyPostsView />, document.querySelector(".container"))
+			let postColl = new PostCollection({limitedToUser: true	});
+			postColl.fetch().then((d)=>{
+				console.log(postColl)
+			ReactDOM.render(<DashBoardView coll={postColl} />, document.querySelector(".container"))
+			})
 		},
 
 		showPostEditor: function(){
@@ -34,11 +38,11 @@ const app = function() {
 		},
 
 		showDashboard: function(){
-			var coll = new PostCollection()
+			let coll = new PostCollection({limitedToUser: false})
+			console.log('coll in dashboard', coll)
 			coll.fetch().fail(function(err){
 				console.log(err)
 			})
-			// console.log('creating new post collection')
 			ReactDOM.render(<DashBoardView coll={coll} />, document.querySelector(".container"))
 		},
 
@@ -49,8 +53,6 @@ const app = function() {
 		initialize: function(){
 			Backbone.history.start()
 			this.on('route', function(rtHandler){
-				// console.log(rtHandler)
-				// console.log('current user> ',User.getCurrentUser())
 				if(!User.getCurrentUser()){
 					location.hash = 'login'
 				}

@@ -17,7 +17,7 @@ apiRouter
         })
       }
       else{
-        response.status(404).json({
+        res.status(404).json({
           error: 'no one is logged in'
         })
       }
@@ -37,6 +37,23 @@ apiRouter
         else{
           res.json(newPost)
         }
+      })
+    })
+    .delete('/posts/:_id', function(req,res){
+      console.log('request parameters',req.params)
+      let postId = req.params._id
+      console.log('removing post')
+      Post.remove({_id: postId}, function(err){
+        if (err) {
+      res.json({
+        error: err
+      })
+    }
+    else {
+      res.status(200).json({
+        msg: 'record successfully deleted!'
+      })
+    }
       })
     })
 

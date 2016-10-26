@@ -1,4 +1,6 @@
 import {User} from './models/models'
+import {PostCollection} from './models/models'
+import DashboardView from './views/dashboardView'
 
 const ACTIONS = {
 	registerUser: function(email,password){
@@ -13,7 +15,14 @@ const ACTIONS = {
 			console.log(respond)
 			location.hash = 'home'
 		})
-	}
+	},
+
+	logUserOut: function(email,password){
+		return User.logout().then(() =>{
+			location.hash = 'login'
+		})
+	},
+
 }
 
 export default ACTIONS

@@ -3,13 +3,20 @@ import $ from 'jquery'
 import {app_name} from '../app'
 
 const PostModel = Backbone.Model.extend({
-	url: "/api/posts",
+	urlRoot: "/api/posts",
 	idAttribute: "_id"
 })
 
 const PostCollection = Backbone.Collection.extend({
 	model: PostModel,
-	url: "/api/myPosts"
+	url: "/api/posts",
+
+	initialize: function(options){
+		if( options.limitedToUser === true ){
+			console.log('limited to user post collection')
+			this.url = "/api/myPosts"
+		}
+	}
 })
 
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
@@ -57,8 +64,6 @@ User.getCurrentUser = function() {
 export {User,PostModel,PostCollection}
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 
-// ^^ DO NOT TOUCH ^^
-// but, you may ...
 const myUserModel = User.extend({
 
 })

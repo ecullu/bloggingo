@@ -1,12 +1,44 @@
 * {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Kavivanar', cursive;
+	/*font-family: Helvetica, Arial, sans-serif;*/
 	box-sizing: border-box;
+	border: 1px solid navy;
 }
 
-h1 {
-	font-size: 300px;
+body{
+	background-color: rgba(40, 48, 24,0.7);
+}
+
+#header{
+	background-color: #aa863a;
+}
+
+
+
+.title{
+	position: relative;
+}
+
+.logout{
+	position: absolute;
+	height: 50%;
+	right: 5%;
+	top: 10%;
+}
+
+.logout > h5{
+	font-size: 50%;
+}
+
+.logout > button{
+	display: inline;
+}
+
+.title > h1 {
+	font-family: 'Patrick Hand SC', cursive;
+	color: #f0eceb;
+	letter-spacing: 0.2em;
 	text-align: center;
-	color: fuchsia;
 }
 
 .navbar {
