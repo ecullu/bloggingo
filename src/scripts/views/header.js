@@ -4,7 +4,6 @@ import {User} from '../models/models'
 
 const Header = React.createClass({
 	render: function(){
-		console.log('current user>>>', User.getCurrentUser().email)
 		let currentUser = User.getCurrentUser().email
 		return (
 				<div id="header">

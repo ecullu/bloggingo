@@ -1,6 +1,5 @@
 * {
 	font-family: 'Kavivanar', cursive;
-	/*font-family: Helvetica, Arial, sans-serif;*/
 	box-sizing: border-box;
 	border: 1px solid navy;
 }
@@ -12,8 +11,6 @@ body{
 #header{
 	background-color: #aa863a;
 }
-
-
 
 .title{
 	position: relative;
@@ -48,7 +45,6 @@ body{
 }
 
 .navbar > a {
-	/*width: 30%;*/
 	font-size: 1.5em;
 	text-decoration: none;
 	color: #111;

@@ -18,7 +18,6 @@ const DashboardView = React.createClass({
 	},
 
 	componentWillReceiveProps: function(newProps){
-		console.log('newprops is coming',newProps)
 		newProps.coll.on('sync update', () => {
 			this.setState({
 				coll: newProps.coll
@@ -31,7 +30,6 @@ const DashboardView = React.createClass({
 		
 		if(location.hash === "posts/myPosts"){
 			let coll = this.props.coll.where({author: ACTIONS.getCurrentUser()})
-			console.log(coll)
 		}
 
 		return (
@@ -57,12 +55,9 @@ const AllPosts = React.createClass({
 
 const Post = React.createClass({
 	_handleDelete: function (){
-		console.log(this.props)
 		this.props.post.destroy()
 	},
 	render: function(){
-			console.log('post in allposts', this.props.post)
-
 		return (
 				<div className="blog-post">
 					<div className="post-title">
